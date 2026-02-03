@@ -1,18 +1,17 @@
-# @inconvoai/ai-sdk
+# @inconvoai/vercel-ai-sdk
 
 AI SDK tools for connecting [Inconvo](https://www.npmjs.com/package/@inconvoai/node) to the [Vercel AI SDK](https://sdk.vercel.ai/docs). This package exports three tools that enable your AI applications to query and analyze data through Inconvo's data analyst.
 
 ## Installation
 
-```bash
-npm install @inconvoai/ai-sdk
-```
+````bash
+npm install @inconvoai/vercel-ai-sdk
 
 Or with pnpm:
 
 ```bash
-pnpm add @inconvoai/ai-sdk
-```
+pnpm add @inconvoai/vercel-ai-sdk
+````
 
 > `@inconvoai/node` and `ai` are peer dependencies. Make sure your Inconvo API key is available via the `INCONVO_API_KEY` environment variable.
 
@@ -20,7 +19,7 @@ pnpm add @inconvoai/ai-sdk
 
 ```ts
 import { generateText } from "ai";
-import { inconvoDataAgent } from "@inconvoai/ai-sdk";
+import { inconvoDataAgent } from "@inconvoai/vercel-ai-sdk";
 
 const { text } = await generateText({
   model: gateway("openai/gpt-5-mini"),
@@ -72,7 +71,7 @@ w
 
 ```ts
 import { streamText } from "ai";
-import { inconvoDataAgent } from "@inconvoai/ai-sdk";
+import { inconvoDataAgent } from "@inconvoai/vercel-ai-sdk";
 
 export async function POST(req: Request) {
   const { messages } = await req.json();

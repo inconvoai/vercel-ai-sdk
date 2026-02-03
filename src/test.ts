@@ -1,9 +1,9 @@
-import { gateway, generateText, stepCountIs } from "ai";
+import { generateText, stepCountIs } from "ai";
 import { inconvoDataAgent } from "./index";
 
 async function main() {
   const result = await generateText({
-    model: gateway("openai/gpt-5-mini"),
+    model: "openai/gpt-5-mini",
     prompt:
       "From the connected data generate and answer one data-backed question.",
     tools: {

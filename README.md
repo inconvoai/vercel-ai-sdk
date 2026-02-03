@@ -4,7 +4,7 @@ AI SDK tools for connecting [Inconvo](https://www.npmjs.com/package/@inconvoai/n
 
 ## Installation
 
-````bash
+```bash
 npm install @inconvoai/vercel-ai-sdk
 ```
 
@@ -19,7 +19,7 @@ pnpm add @inconvoai/vercel-ai-sdk
 ## Usage
 
 ```ts
-import { generateText } from "ai";
+import { generateText, stepCountIs } from "ai";
 import { inconvoDataAgent } from "@inconvoai/vercel-ai-sdk";
 
 const { text } = await generateText({
@@ -27,7 +27,7 @@ const { text } = await generateText({
   prompt: "What is our best performing product this week?",
   tools: {
     ...inconvoDataAgent({
-      agentId: process.env.INCONVO_AGENT_ID || "test-agent-id",
+      agentId: process.env.INCONVO_AGENT_ID,
       userIdentifier: "test-user-123",
       userContext: {
         organisationId: 1,
@@ -45,9 +45,12 @@ console.log(text);
 Use the `name` parameter to namespace tool names if using multiple data agents:
 
 ```ts
+import { generateText, stepCountIs } from "ai";
+import { inconvoDataAgent } from "@inconvoai/vercel-ai-sdk";
+
 const { text } = await generateText({
-  model: gateway("openai/gpt-5-mini"),
-  prompt: "Compare HR and sales data",
+  model: "openai/gpt-5-mini",
+  prompt: "What is our best performing product this week?",
   tools: {
     ...inconvoDataAgent({
       name: "hr",
@@ -62,37 +65,12 @@ const { text } = await generateText({
       userContext: { organisationId: 1 },
     }),
   },
+  stopWhen: stepCountIs(5),
 });
 ```
 
 This creates tools like `getHrDataAgentConnectedDataSummary`, `startHrDataAgentConversation`, `getSalesDataAgentConnectedDataSummary`, etc.
 w
-
-### With streaming
-
-```ts
-import { streamText } from "ai";
-import { inconvoDataAgent } from "@inconvoai/vercel-ai-sdk";
-
-export async function POST(req: Request) {
-  const { messages } = await req.json();
-
-  const result = await streamText({
-    model: gateway("openai/gpt-5-mini"),
-    messages,
-    tools: inconvoDataAgent({
-      agentId: process.env.INCONVO_AGENT_ID!,
-      userIdentifier: req.headers.get("x-user-id")!,
-      userContext: async () => {
-        // Fetch user context dynamically
-        return { organisationId: await getOrgId() };
-      },
-    }),
-  });
-
-  return result.toDataStreamResponse();
-}
-```
 
 ## Exported Tools
 
@@ -137,13 +115,9 @@ The conversation maintains context, so follow-up questions can reference previou
 ```bash
 # Run test script
 pnpm test
+```
 
+```bash
 # Build the package
 pnpm build
 ```
-
-The build step emits ESM bundles (`dist/index.js`) plus TypeScript type declarations.
-
-Releases are automated via semantic-release on pushes to `main`.
-Publishing uses npm Trusted Publishing (OIDC) in CI.
-````

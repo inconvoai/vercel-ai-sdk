@@ -6,12 +6,13 @@ AI SDK tools for connecting [Inconvo](https://www.npmjs.com/package/@inconvoai/n
 
 ````bash
 npm install @inconvoai/vercel-ai-sdk
+```
 
 Or with pnpm:
 
 ```bash
 pnpm add @inconvoai/vercel-ai-sdk
-````
+```
 
 > `@inconvoai/node` and `ai` are peer dependencies. Make sure your Inconvo API key is available via the `INCONVO_API_KEY` environment variable.
 
@@ -145,3 +146,4 @@ The build step emits ESM bundles (`dist/index.js`) plus TypeScript type declarat
 
 Releases are automated via semantic-release on pushes to `main`.
 Publishing uses npm Trusted Publishing (OIDC) in CI.
+````

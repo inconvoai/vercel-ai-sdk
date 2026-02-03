@@ -1,0 +1,48 @@
+{
+  "name": "@inconvoai/node-ai-sdk",
+  "version": "1.4.0",
+  "description": "Backend tool helpers for connecting Inconvo to the Vercel AI SDK",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ten-dev/node-ai-sdk.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "test": "tsx --env-file=.env src/test.ts",
+    "prepublishOnly": "pnpm build"
+  },
+  "packageManager": "pnpm@10.8.0",
+  "peerDependencies": {
+    "@inconvoai/node": "^0.5.0",
+    "ai": "^5.0.0"
+  },
+  "dependencies": {
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@inconvoai/node": "^0.5.0",
+    "@types/node": "^24.10.1",
+    "ai": "^5.0.0",
+    "dotenv": "^17.2.3",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

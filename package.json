@@ -1,5 +1,5 @@
 {
-  "name": "@inconvoai/node-ai-sdk",
+  "name": "@inconvoai/vercel-ai-sdk",
   "version": "1.4.0",
   "description": "Backend tool helpers for connecting Inconvo to the Vercel AI SDK",
   "license": "MIT",
@@ -18,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/inconvoai/node-ai-sdk.git"
+    "url": "git+https://github.com/inconvoai/vercel-ai-sdk.git"
   },
   "publishConfig": {
     "access": "public"

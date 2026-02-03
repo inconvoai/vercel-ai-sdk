@@ -125,7 +125,9 @@ export const messageDataAgent = (options: InconvoToolsOptions) => {
       conversationId: z.string().describe("The ID of the conversation."),
       message: z
         .string()
-        .describe("The analysis request to send to the Data Analyst"),
+        .describe(
+          "The user's analytics question, kept short and singular without added assumptions.",
+        ),
     }),
     execute: async ({ conversationId, message }) => {
       const stream = inconvo.agents.conversations.response.create(

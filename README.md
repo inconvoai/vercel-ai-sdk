@@ -186,4 +186,4 @@ pnpm build
 The build step emits ESM bundles (`dist/index.js`) plus TypeScript type declarations.
 
 Releases are automated via semantic-release on pushes to `main`.
-Publishing uses npm Trusted Publishing (OIDC) in CI.
+Publishing uses npm Trusted Publishing (OIDC) in CI. 

@@ -1,4 +1,5 @@
 import type Inconvo from "@inconvoai/node";
+import type { ResponseCompletedEvent } from "@inconvoai/node";
 
 export type InconvoUserContext = Record<string, unknown>;
 
@@ -7,7 +8,10 @@ export type UserContextProvider =
   | Promise<InconvoUserContext>
   | (() => Promise<InconvoUserContext> | InconvoUserContext);
 
-export type SerializeResponse = (response: unknown) => string;
+// Extract the response type from ResponseCompletedEvent
+export type InconvoResponse = ResponseCompletedEvent["response"];
+
+export type SerializeResponse = (response: unknown) => InconvoResponse;
 
 export interface InconvoToolsOptions {
   inconvo?: Inconvo;

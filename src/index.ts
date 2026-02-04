@@ -8,6 +8,7 @@ export { defaultMessageDataAgentDescription } from "./tools/constants.js";
 export type {
   InconvoToolsOptions,
   InconvoUserContext,
+  InconvoResponse,
   SerializeResponse,
   UserContextProvider,
 } from "./tools/types.js";

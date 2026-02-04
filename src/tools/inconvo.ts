@@ -2,14 +2,18 @@ import Inconvo from "@inconvoai/node";
 import { tool } from "ai";
 import { z } from "zod";
 import { defaultMessageDataAgentDescription } from "./constants.js";
-import type { InconvoToolsOptions, SerializeResponse } from "./types.js";
+import type {
+  InconvoToolsOptions,
+  InconvoResponse,
+  SerializeResponse,
+} from "./types.js";
 
 const ensureSerializer = (serialize?: SerializeResponse): SerializeResponse => {
   if (serialize) {
     return serialize;
   }
-  return (value: unknown) =>
-    typeof value === "string" ? value : JSON.stringify(value ?? null);
+  // Return the object as-is instead of stringifying to preserve structure for UI rendering
+  return (value: unknown) => value as InconvoResponse;
 };
 
 /**
@@ -160,7 +164,10 @@ export const messageDataAgent = (options: InconvoToolsOptions) => {
 /**
  * Convenience function to get all Inconvo Data Agent tools at once
  */
-export const inconvoDataAgent = (options: InconvoToolsOptions) => {
+export const inconvoDataAgent = (
+  options: InconvoToolsOptions,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): Record<string, any> => {
   const { name } = options;
   const capitalizedName = name
     ? name.charAt(0).toUpperCase() + name.slice(1)
